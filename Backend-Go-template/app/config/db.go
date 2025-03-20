@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Nxwbtk/Mono-repo-template/Backend-template/model"
+	"github.com/Nxwbtk/Mono-repo-template/Backend-Go-template/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

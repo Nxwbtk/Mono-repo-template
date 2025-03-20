@@ -3,7 +3,7 @@ package cat
 import (
 	"net/http"
 
-	catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-template/services/Cat/cat-schemas"
+	catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-Go-template/services/Cat/cat-schemas"
 	"github.com/gin-gonic/gin"
 )
 

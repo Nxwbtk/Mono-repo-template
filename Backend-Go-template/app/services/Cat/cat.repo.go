@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/Nxwbtk/Mono-repo-template/Backend-template/model"
-	catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-template/services/Cat/cat-schemas"
+	"github.com/Nxwbtk/Mono-repo-template/Backend-Go-template/model"
+	catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-Go-template/services/Cat/cat-schemas"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

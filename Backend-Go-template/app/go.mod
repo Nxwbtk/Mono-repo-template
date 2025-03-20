@@ -1,4 +1,4 @@
-module github.com/Nxwbtk/Mono-repo-template/Backend-template
+module github.com/Nxwbtk/Mono-repo-template/Backend-Go-template
 
 go 1.22.12
 

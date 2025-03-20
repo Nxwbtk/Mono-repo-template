@@ -5,4 +5,4 @@ source ~/.bashrc
 nvm install node
 npm install -g nodemon
 go install github.com/swaggo/swag/cmd/swag@latest
-cd /workspaces/Mono-repo-template/Backend-template/app && go get .
+cd /workspaces/Mono-repo-template/Backend-Go-template/app && go get .

@@ -1,6 +1,6 @@
 package cat
 
-import catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-template/services/Cat/cat-schemas"
+import catschemas "github.com/Nxwbtk/Mono-repo-template/Backend-Go-template/services/Cat/cat-schemas"
 
 type CatService interface {
 	GetCatsService() ([]catschemas.TGetCat, error)
