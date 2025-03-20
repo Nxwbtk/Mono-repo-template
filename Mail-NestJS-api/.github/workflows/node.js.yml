@@ -1,0 +1,64 @@
+name: CICD Deployment - Rival AI Backend
+
+on:
+  push:
+    tags:
+      - '*-beta'
+  pull_request:
+    branches: [ "main", "dev" ]
+    types:
+      - opened
+      - synchronize
+      - reopened
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ap-southeast-1
+  ECR_REPOSITORY: rival-uat/mail-service
+  IMAGE_TAG: ${{ github.ref_name }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    name: "Build image"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && endsWith(github.ref_name, '-beta')
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: "Configure AWS Credentials"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.GITHUBACTION_ROLE_UAT }}
+          role-session-name: GitHubActions
+          aws-region: ${{ env.AWS_REGION }}
+          role-skip-session-tagging: true
+
+      - name: "Login to Amazon ECR"
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+
+      - name: "Build & Push Docker Image"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+  pr-validation:
+    name: "Pull Request Validation"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+      - name: "Build Docker Image"
+        run: |
+          docker build .
+     
