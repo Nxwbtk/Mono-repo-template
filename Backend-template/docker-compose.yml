@@ -1,0 +1,26 @@
+services:
+  pg:
+    image: postgres:latest
+    container_name: template-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: template-api
+    ports:
+      - "2324:2324"
+    depends_on:
+      - pg
+    env_file:
+      - app/.env
+
+volumes:
+  pgdata:
