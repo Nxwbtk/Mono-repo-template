@@ -25,6 +25,19 @@ services:
       - Backend-Go-template/app/.env
     networks:
       - template-network
+  frontend:
+    build:
+      context: Frontend-NextJS-template
+      dockerfile: Dockerfile
+    container_name: template-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - template-network
+    depends_on:
+      - api
+    env_file:
+      - Frontend-NextJS-template/app/.env
 
 volumes:
   pgdata:
