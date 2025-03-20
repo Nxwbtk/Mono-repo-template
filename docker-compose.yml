@@ -12,11 +12,13 @@ services:
       - pgdata:/var/lib/postgresql/data
     networks:
       - template-network
+    restart: always
   api:
     build:
       context: Backend-Go-template
       dockerfile: Dockerfile
     container_name: template-api
+    restart: always
     ports:
       - "2324:2324"
     depends_on:
@@ -36,8 +38,7 @@ services:
       - template-network
     depends_on:
       - api
-    env_file:
-      - Frontend-NextJS-template/app/.env
+    restart: always
 
 volumes:
   pgdata:
