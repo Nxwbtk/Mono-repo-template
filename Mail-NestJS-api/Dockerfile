@@ -1,4 +1,4 @@
-FROM node:23-bookworm-slim
+FROM node:24.5-alpine
 
 WORKDIR /usr/src/app
 

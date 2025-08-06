@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim AS prod-deps
+FROM node:24.5-alpine AS prod-deps
 COPY /app /app
 WORKDIR /app
 RUN npm ci

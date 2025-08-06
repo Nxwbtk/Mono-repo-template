@@ -1,4 +1,4 @@
-FROM golang:1.23 AS prod-deps
+FROM golang:1.24.5-alpine AS prod-deps
 
 WORKDIR /usr/src/app
 
